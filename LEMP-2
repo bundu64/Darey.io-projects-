@@ -1,0 +1,54 @@
+## LEMP Stack Implementation
+
+### Step 1 - Installing Nginx
+
+Update a list of packages in package manager
+sudo apt update
+
+Run nginx package installation
+sudo apt install nginx -y
+
+Verify nginx was installed successfully
+sudo systemctl status nginx -y
+
+Verify using curl
+curl http://localhost:80
+
+<img width="617" alt="Screenshot 2022-07-04 at 18 59 45" src="https://user-images.githubusercontent.com/105384023/177281665-36107614-21ff-4552-8b9c-25b8cd9b03ed.png">
+
+
+Curl via Public IP
+
+<img width="893" alt="Screenshot 2022-07-04 at 19 00 01" src="https://user-images.githubusercontent.com/105384023/177282881-2da1f53d-0bea-4171-84f6-a1df5c45d1da.png">
+
+
+### Step 3 - Install PHP
+Install PHP
+sudo apt install php-fpm php-mysql -y
+php -v
+
+### Step 4 - Configure Nginx to use PHP Processor
+Create root web directory for the domain:
+
+sudo mkdir /var/www/projectLEMP`               
+sudo chown -R $USER:$USER /var/www/projectLEMP
+sudo nano /etc/nginx/sites-available/projectLEMP
+
+<img width="1211" alt="Screenshot 2022-07-05 at 09 27 33" src="https://user-images.githubusercontent.com/105384023/177284904-deb5f894-e3cf-44bb-875d-2f8ae8d2f689.png">
+
+sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successfulsudo nginx -t
+
+Disable default Nginx host that is currently configured to listen on port 80
+sudo unlink /etc/nginx/sites-enabled/default
+
+### STEP 6 Retrieving data from mysql
+sudo mysql
+mysql> INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
+SELECT * FROM example_database.todo_list;
+
+<img width="789" alt="Screenshot 2022-07-04 at 23 03 48" src="https://user-images.githubusercontent.com/105384023/177287051-8150068b-cb83-486e-b0f7-0c74948dd760.png">
+
+<img width="574" alt="Screenshot 2022-07-04 at 22 15 20" src="https://user-images.githubusercontent.com/105384023/177287332-245d995f-70d2-4e0a-9ed9-efdab52c5289.png">
